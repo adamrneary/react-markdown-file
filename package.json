@@ -1,0 +1,30 @@
+{
+  "name": "react-markdown-file",
+  "version": "0.0.1",
+  "description": "React component to retrieve and render a standalone markdown file",
+  "homepage": "http://adamrneary.com/react-markdown-file",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/adamrneary/react-markdown-file"
+  },
+  "bugs": {
+    "url": "git://github.com/adamrneary/react-markdown-file/issues"
+  },
+  "main": "./index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "markdown",
+    "component"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Neary (adamrneary)",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "markdown": "^0.5.0",
+    "react": "^0.11.0"
+  }
+}
