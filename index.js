@@ -1,9 +1,19 @@
-'use strict';
-
 var React = require('react');
 var PropTypes = require('react/lib/ReactPropTypes');
-var markdown = require('markdown').markdown;
+var marked = require('marked');
 var _ = require('lodash');
+
+var renderer = new marked.Renderer();
+renderer.heading = function (text, level) {
+  var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+  return '<h' + level + '><a name="' +
+    escapedText +
+    '" class="anchor" href="#' +
+    escapedText +
+    '"><span class="header-link"></span></a>' +
+    text + '</h' + level + '>';
+};
 
 // https://gist.github.com/jeremiahlee/1748966
 var ReactMarkdownFile = React.createClass({
@@ -15,7 +25,7 @@ var ReactMarkdownFile = React.createClass({
   getInitialState: function() {
     return {
       md: ''
-    }
+    };
   },
   componentDidMount: function() {
     $.get(this.props.fileName, _.bind(function(data) {
@@ -23,7 +33,7 @@ var ReactMarkdownFile = React.createClass({
     }, this));
   },
   render: function() {
-    var rawMarkup = markdown.toHTML(this.state.md);
+    var rawMarkup = marked(this.state.md, { renderer: renderer });
     return React.DOM.span({
       dangerouslySetInnerHTML: {__html: rawMarkup}
     });
